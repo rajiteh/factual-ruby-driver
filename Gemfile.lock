@@ -1,20 +1,33 @@
 PATH
   remote: .
   specs:
-    factual-api (1.3.17)
+    factual-api (1.3.18)
       json (~> 1.2, >= 1.2.0)
       oauth (~> 0.4.4, >= 0.4.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    json (1.8.1)
+    diff-lcs (1.2.5)
+    json (1.8.2)
     oauth (0.4.7)
-    rspec (0.9.4)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.2)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   factual-api!
-  rspec (~> 0)
+  rspec

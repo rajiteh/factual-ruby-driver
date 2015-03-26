@@ -1,3 +1,7 @@
 *.gem
 *.swp
 pkg
+.factual-auth.yml
+.bundle/
+.rspec
+vendor/

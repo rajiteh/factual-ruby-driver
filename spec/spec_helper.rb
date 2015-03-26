@@ -4,14 +4,13 @@ require 'rspec'
 require 'factual'
 
 RSpec.configure do |c|
-    c.mock_with :rspec
+  c.mock_with :rspec
 end
 
-CREDENTIALS_FILE = File.expand_path('~/.factual/factual-auth.yaml')
+CREDENTIALS_FILE = File.expand_path('../.factual-auth.yml', File.dirname(__FILE__))
 
 LAT = 34.06021
 LNG = -118.41828
-
 
 class MockAccessToken
   class Response

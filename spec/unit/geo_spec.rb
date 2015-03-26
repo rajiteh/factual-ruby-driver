@@ -14,6 +14,6 @@ describe Factual::Query::Geocode do
   it "should be able to set the geocode url" do
     @geocode.first
     expected_url = @base + %{places/geocode?geo={"$point":[#{LAT},#{LNG}]}}
-    CGI::unescape(@token.last_url).should == expected_url
+    expect(CGI::unescape(@token.last_url)).to eq expected_url
   end
 end

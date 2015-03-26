@@ -13,6 +13,6 @@ describe Factual::API do
     end_date = Time.utc(2012, 2, 1)
     diffs = api.diffs(DIFF_TABLE, :start => start_date, :end => end_date)
 
-    token.last_url.should == "http://api.v3.factual.com/t/2EH4Pz/diffs?start=1325376000000&end=1328054400000"
+    expect(token.last_url).to eq "http://api.v3.factual.com/t/2EH4Pz/diffs?start=1325376000000&end=1328054400000"
   end
 end

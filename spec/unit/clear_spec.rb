@@ -16,8 +16,8 @@ describe Factual::Write::Clear do
 
   it "should be able to write a basic clear" do
     @clear.write
-    @token.last_url.should == "http://api.v3.factual.com/t/global/id123/clear"
-    @token.last_body.should == "user=user123&fields=lat%2Clng"
+    expect(@token.last_url).to eq "http://api.v3.factual.com/t/global/id123/clear"
+    expect(@token.last_body).to eq "user=user123&fields=lat%2Clng"
   end
 
   it "should not allow an invalid param" do
@@ -28,26 +28,26 @@ describe Factual::Write::Clear do
     rescue
       raised = true
     end
-    raised.should == true
+    expect(raised).to be_truthy
   end
 
   it "should be able to set a comment" do
     @clear.comment("This is my comment").write
-    @token.last_url.should == "http://api.v3.factual.com/t/global/id123/clear"
-    @token.last_body.should == "user=user123&fields=lat%2Clng&comment=This+is+my+comment"
+    expect(@token.last_url).to eq "http://api.v3.factual.com/t/global/id123/clear"
+    expect(@token.last_body).to eq "user=user123&fields=lat%2Clng&comment=This+is+my+comment"
   end
 
   it "should be able to set a reference" do
     @clear.reference("http://www.google.com").write
-    @token.last_url.should == "http://api.v3.factual.com/t/global/id123/clear"
-    @token.last_body.should == "user=user123&fields=lat%2Clng&reference=http%3A%2F%2Fwww.google.com"
+    expect(@token.last_url).to eq "http://api.v3.factual.com/t/global/id123/clear"
+    expect(@token.last_body).to eq "user=user123&fields=lat%2Clng&reference=http%3A%2F%2Fwww.google.com"
   end
 
   it "should be able to return a path" do
-    @clear.path.should == "/t/global/id123/clear"
+    expect(@clear.path).to eq "/t/global/id123/clear"
   end
 
   it "should be able to return a body" do
-    @clear.body.should == "user=user123&fields=lat%2Clng"
+    expect(@clear.body).to eq "user=user123&fields=lat%2Clng"
   end
 end
