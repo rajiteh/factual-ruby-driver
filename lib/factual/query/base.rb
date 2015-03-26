@@ -23,7 +23,11 @@ class Factual
       end
 
       def data
-        response["data"]
+        response[:body]["data"]
+      end
+
+      def throttle_limits
+        response[:throttle_limits]
       end
 
       def rows
@@ -32,7 +36,7 @@ class Factual
 
       def total_count
         resp = @api.get(self, :include_count => true, :limit => 1)
-        resp["total_row_count"]
+        resp[:body]["total_row_count"]
       end
 
       def schema

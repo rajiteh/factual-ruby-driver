@@ -3,12 +3,12 @@ class Factual
     class Facets < Base
       DEFAULT_LIMIT = 20
       VALID_PARAMS  = [
-        :filters, :search, :geo, 
-        :select, 
+        :filters, :search, :geo,
+        :select,
         :limit, :min_count,
         :threshold,
         :include_count, :user
-      ] 
+      ]
 
       def initialize(api, path, params = {})
         @path = path
@@ -33,7 +33,7 @@ class Factual
       end
 
       def columns
-        response["data"]
+        response[:body]["data"]
       end
     end
   end

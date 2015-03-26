@@ -39,7 +39,8 @@ class Factual
 
       resp = make_request(url)
       payload = JSON.parse(resp.body)
-      handle_payload(payload)
+      throttle_limits = JSON.parse(resp['x-factual-throttle-allocation']) rescue {}
+      { throttle_limits: throttle_limits, body: handle_payload(payload) }
     end
 
     def raw_post(path, body)
@@ -47,7 +48,8 @@ class Factual
       url = "http://#{@host}#{path}"
       resp = make_request(url, query_string(body), :post)
       payload = JSON.parse(resp.body)
-      handle_payload(payload)
+      throttle_limits = JSON.parse(resp['x-factual-throttle-allocation']) rescue {}
+      { throttle_limits: throttle_limits, body: handle_payload(payload) }
     end
 
     def diffs(view_id, params = {})
@@ -84,15 +86,16 @@ class Factual
         req = make_request(url, params, :post)
       end
       payload = JSON.parse(req.body)
+      throttle_limits = JSON.parse(req['x-factual-throttle-allocation']) rescue {}
 
       if (path == '/multi')
          payload.inject({}) do |res, item|
            name, p = item
            res[name] = handle_payload(p)
-           res
+           { throttle_limits: throttle_limits, body: res }
          end
       else
-        handle_payload(payload)
+        { throttle_limits: throttle_limits, body: handle_payload(payload) }
       end
     end
 
