@@ -1,6 +1,6 @@
 class Factual
   class API
-    VERSION = "1.3.18"
+    VERSION = "1.3.19"
     API_V3_HOST = "api.v3.factual.com"
     DRIVER_VERSION_TAG = "factual-ruby-driver-v" + VERSION
     PARAM_ALIASES = { :search => :q, :sort_asc => :sort }
@@ -30,13 +30,12 @@ class Factual
       handle_request(:schema, query.path, query.params)["view"]
     end
 
-    def raw_get(path, query)
+    def raw_get(path, query, use_ssl = false)
       path = '/' + path unless path =~ /^\//
-      url = "http://#{@host}#{path}"
+      url = "http#{use_ssl ? 's' : ''}://#{@host}#{path}"
 
       qs = query_string(query)
       url += "?#{qs}" unless qs.empty?
-
       resp = make_request(url)
       payload = JSON.parse(resp.body)
       throttle_limits = JSON.parse(resp['x-factual-throttle-allocation']) rescue {}

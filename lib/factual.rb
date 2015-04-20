@@ -24,6 +24,7 @@ require File.expand_path('../factual/multi', __FILE__)
 
 class Factual
   def initialize(key, secret, options = {})
+    @key = key
     debug_mode = options[:debug].nil? ? false : options[:debug]
     host = options[:host]
     timeout = options[:timeout]
@@ -70,7 +71,7 @@ class Factual
   end
 
   def geocode(lat, lng)
-    Query::Geocode.new(@api, lat, lng)
+    @api.raw_get('geotag', {latitude: lat, longitude: lng, 'KEY' => @key}, true)
   end
 
   def get(path, query={})
