@@ -71,7 +71,7 @@ class Factual
   end
 
   def geocode(lat, lng)
-    @api.raw_get('geotag', {latitude: lat, longitude: lng, 'KEY' => @key})
+    @api.raw_get('geotag', {latitude: lat, longitude: lng, 'KEY' => @key}, true)
   end
 
   def get(path, query={})
